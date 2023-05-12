@@ -1,0 +1,11 @@
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.csproj.AssemblyReference.cache
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.csproj.SuggestedBindingRedirects.cache
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.Form1.resources
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.Properties.Resources.resources
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.csproj.GenerateResource.cache
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.csproj.CoreCompileInputs.cache
+C:\programmering\C#Projects\CashCounter\CashCounter\bin\Debug\CashCounter.exe.config
+C:\programmering\C#Projects\CashCounter\CashCounter\bin\Debug\CashCounter.exe
+C:\programmering\C#Projects\CashCounter\CashCounter\bin\Debug\CashCounter.pdb
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.exe
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.pdb
