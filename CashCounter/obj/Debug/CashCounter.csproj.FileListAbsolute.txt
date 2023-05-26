@@ -20,3 +20,4 @@ C:\Users\vikto\OneDrive\Skrivbord\Programing\Skola\CashCounter\obj\Debug\CashCou
 C:\Users\vikto\OneDrive\Skrivbord\Programing\Skola\CashCounter\obj\Debug\CashCounter.csproj.CoreCompileInputs.cache
 C:\Users\vikto\OneDrive\Skrivbord\Programing\Skola\CashCounter\obj\Debug\CashCounter.exe
 C:\Users\vikto\OneDrive\Skrivbord\Programing\Skola\CashCounter\obj\Debug\CashCounter.pdb
+C:\programmering\C#Projects\CashCounter\CashCounter\obj\Debug\CashCounter.TextInputMessageBox.resources

@@ -69,7 +69,7 @@ namespace CashCounter
         public string name { get; }
         public string code { get; }
         public int amount { get; set; }
-        public int sellPrice { get;  }
+        public int sellPrice { get; set; }
         public int buyPrice { get; }
         public string descriprion { get; }
     }

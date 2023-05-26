@@ -13,6 +13,10 @@ namespace CashCounter
         //Constructor that takes an initial list of products and adds them to the products list.
         public Controller( List<Product> initialProducts )
         {
+            //Generate discountCode
+            Random random = new Random();
+            discountCode = random.Next( 1000, 10000 ).ToString();
+
             products.AddRange( initialProducts );
         }
 
@@ -139,6 +143,75 @@ namespace CashCounter
             return data;
         }
 
+        public string[] GetFormatedHistory( ProductFlags flags )
+        {
+            string[] data = new string[history.Count];
+
+            int i = 0;
+            foreach(List<Product> purchases in history)
+            {
+                data[i] += "Order: " + ( i + 1 ).ToString() + "\r\n";
+
+                foreach(Product product in purchases)
+                {
+                    // Check if the "Name" flag is set in the provided flags.
+                    if(( ProductFlags.Name & flags ) != 0)
+                    {
+                        if(data[i][data[i].Length - 1] != '\n')
+                            data[i] += " - ";
+                        data[i] += product.name;
+                    }
+
+                    // Check if the "Code" flag is set in the provided flags.
+                    if(( ProductFlags.Code & flags ) != 0)
+                    {
+                        if(data[i][data[i].Length - 1] != '\n')
+                            data[i] += " - ";
+                        data[i] += product.code;
+                    }
+
+                    // Check if the "Amount" flag is set in the provided flags.
+                    if(( ProductFlags.Amount & flags ) != 0)
+                    {
+                        if(data[i][data[i].Length - 1] != '\n')
+                            data[i] += " - ";
+                        data[i] += product.amount;
+                    }
+
+                    // Check if the "SellPrice" flag is set in the provided flags.
+                    if(( ProductFlags.SellPrice & flags ) != 0)
+                    {
+                        if(data[i][data[i].Length - 1] != '\n')
+                            data[i] += " - ";
+                        data[i] += product.sellPrice;
+                    }
+
+                    // Check if the "BuyPrice" flag is set in the provided flags.
+                    if(( ProductFlags.BuyPrice & flags ) != 0)
+                    {
+                        if(data[i][data[i].Length - 1] != '\n')
+                            data[i] += " - ";
+                        data[i] += product.buyPrice;
+                    }
+
+                    // Check if the "Description" flag is set in the provided flags.
+                    if(( ProductFlags.Description & flags ) != 0)
+                    {
+                        if(data[i][data[i].Length - 1] != '\n')
+                            data[i] += " - ";
+                        data[i] += product.descriprion;
+                    }
+
+                    data[i] += "\r\n";
+
+                }
+
+                i++;
+            }
+
+            return data;
+        }
+
 
         public void AddProduct( Product product )
         {
@@ -172,6 +245,38 @@ namespace CashCounter
             {
                 products.RemoveAll( p => product == p );
             }
+        }
+
+        public int GetHistoryTotalPrice()
+        {
+            int price = 0;
+
+            //Loop products and sum up price
+            foreach(List<Product> purcheses in history)
+            {
+                foreach(Product product in purcheses)
+                {
+                    price += ( product.buyPrice * product.amount );
+                }
+            }
+
+            return price;
+        }
+
+        public int GetHistoryTotalSellPrice()
+        {
+            int price = 0;
+
+            //Loop products and sum up price
+            foreach(List<Product> purcheses in history)
+            {
+                foreach(Product product in purcheses)
+                {
+                    price += ( product.sellPrice * product.amount );
+                }
+            }
+
+            return price;
         }
 
         public void AddProductToCart( int index, int amount = 1 )
@@ -230,8 +335,45 @@ namespace CashCounter
             return price;
         }
 
+        public void BuyCart()
+        {
+            //Display Custom Messagebox
+            TextInputMessageBox textBox = new TextInputMessageBox( "Do you have a discount code", "Discount" );
+            textBox.ShowDialog();
+
+
+            //Check if we have a discount
+            float discount = 1.0f;
+            if( textBox.output == discountCode )
+            {
+                discount = 0.85f;
+            }
+            else if( GetCartPrice() > 2000)
+            {
+                discount = 0.9f;
+            }
+
+            //Give discount to products
+            foreach( Product product in cart )
+            {
+                product.sellPrice = (int)( product.sellPrice * discount );
+            }
+
+            //Add products to history and empty cart
+            history.Add(new List<Product>(cart));
+            cart.Clear();
+        }
+
+        //Discount code
+        public string discountCode { get; }
+
         //List of products in storage
         public List<Product> products { get; } = new List<Product>();
+
+        //List of products in cart
         public List<Product> cart { get; } = new List<Product>();
+
+        //List of purcheses
+        public List<List<Product>> history { get; } = new List<List<Product>>();
     }
 }
